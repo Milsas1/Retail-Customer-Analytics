@@ -1,0 +1,10 @@
+# Data files
+data/Raw-Data/
+data/RFM-Data/
+
+# Power BI
+*.pbix
+
+# Python cache
+__pycache__/
+*.pyc
