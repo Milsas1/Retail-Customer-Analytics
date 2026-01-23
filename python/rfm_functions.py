@@ -1,6 +1,5 @@
-# RFM Analiza klientów
+# RFM segmentacja i analiza klientów
 # Autor: Milana Ksenafontava
-# Data: 30 listopada 2025
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -134,15 +133,22 @@ for segment in revenue_percentage.sort_values(ascending=False).index:
 
 rfm_table['Monetary'] = rfm_table['Monetary'].astype(str).str.replace('.', ',')
 
-# Zapisanie tabeli RFM do pliku CSV
+# 6. Zapisanie wyników
+
+## Zapisanie tabeli RFM do pliku CSV
 rfm_table.to_csv('rfm_table.csv', index=True, decimal=',')
 
-# Losowe 500 wierszy dla przykładu.
+## Losowe 500 wierszy dla przykładu
 sample_df = df.sample(500, random_state=42)
 
-# Zapisanie w folderze sample
+## Zapisanie w folderze sample
 sample_df.to_csv("data/sample/clean_sample.csv", index=False)
 
+## Wczytanie surowych danych
 raw_df = pd.read_csv('D:/projects/Retail-Analytics/data/Raw-Data/online_retail_II.csv', parse_dates=['invoice_date'], sep=";")
+
+## Losowe 500 wierszy dla przykładu
 raw_sample_df = raw_df.sample(500, random_state=42)
+
+## Zapisanie w folderze sample
 raw_sample_df.to_csv("data/sample/raw_sample.csv", index=False, sep=",")
