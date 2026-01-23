@@ -12,7 +12,7 @@ pd.set_option('display.max_columns', None)
 
 # 1. Wczytanie danych
 try:
-    df = pd.read_csv('D:/projects/Retail-Analytics/data/RFM-data/rfm_transactions_202511261935.csv', parse_dates=['invoice_date'])
+    df = pd.read_csv('D:/projects/Retail-Analytics/data/RFM-Data/clean_transactions.csv', parse_dates=['invoice_date'])
     print("Dane zostały pomyślnie załadowane.")
 except FileNotFoundError:
     print("Błąd: Nie znaleziono określonego pliku.")
@@ -137,4 +137,12 @@ rfm_table['Monetary'] = rfm_table['Monetary'].astype(str).str.replace('.', ',')
 # Zapisanie tabeli RFM do pliku CSV
 rfm_table.to_csv('rfm_table.csv', index=True, decimal=',')
 
+# Losowe 500 wierszy dla przykładu.
+sample_df = df.sample(500, random_state=42)
 
+# Zapisanie w folderze sample
+sample_df.to_csv("data/sample/clean_sample.csv", index=False)
+
+raw_df = pd.read_csv('D:/projects/Retail-Analytics/data/Raw-Data/online_retail_II.csv', parse_dates=['invoice_date'], sep=";")
+raw_sample_df = raw_df.sample(500, random_state=42)
+raw_sample_df.to_csv("data/sample/raw_sample.csv", index=False, sep=",")
