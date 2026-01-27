@@ -2,19 +2,25 @@
 # Autor: Milana Ksenafontava
 
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
+from pathlib import Path 
 
 # Ustawienia wyświetlania Pandas
 pd.set_option('display.max_columns', None)
 
+main_dir = Path(__file__).resolve().parent.parent
+data_dir = main_dir / "data" 
+
 # 1. Wczytanie danych
 try:
-    df = pd.read_csv('D:/projects/Retail-Analytics/data/RFM-Data/clean_transactions.csv', parse_dates=['invoice_date'])
+    df = pd.read_csv(
+        data_dir / "Clean-Data" / "clean_transactions.csv",
+        parse_dates=['invoice_date']
+    )
     print("Dane zostały pomyślnie załadowane.")
-except FileNotFoundError:
-    print("Błąd: Nie znaleziono określonego pliku.")
+except FileNotFoundError as e:
+    raise FileNotFoundError(
+        "Nie znaleziono pliku clean_transactions.csv"
+    ) from e
 
 
 print(f"Rozmiar danych: {df.shape}")
@@ -63,6 +69,10 @@ for score in ['R_Score', 'F_Score', 'M_Score']:
     print(f"\n{score}:")
     print(rfm_table[score].value_counts().sort_index())
 
+rfm_table[['R_Score', 'F_Score', 'M_Score']] = (
+    rfm_table[['R_Score', 'F_Score', 'M_Score']].astype(int)
+)
+
 # 4. Segmentacja klientów na podstawie ocen RFM
 
 ## Tworzenie kombinacji ocen RFM
@@ -76,7 +86,7 @@ rfm_table['RFM_Score'] = (
 def rfm_segments(df):
     r, f, m = df['R_Score'], df['F_Score'], df['M_Score']
     
-    # 1. Chamopions 
+    # 1. Champions 
     if r >= 4 and f >= 4 and m >= 4:
         return 'Champions'  
     
@@ -119,7 +129,7 @@ segment_analysis = rfm_table.groupby('Segment').agg({
     'Frequency': 'mean',    # Średnia liczba zakupów
     'Monetary': 'mean',     # Średnia wartość wydatków
     'RFM_Score': 'count'    # Liczba klientów w segmencie
-}).rename(columns={'RFM_score': 'Count'})
+}).rename(columns={'RFM_Score': 'Liczba klientów'})
 print("\nAnaliza segmentowa:\n", segment_analysis. round(2))
 
 ## Analiza udziału w przychodach według segmentów
@@ -135,20 +145,21 @@ rfm_table['Monetary'] = rfm_table['Monetary'].astype(str).str.replace('.', ',')
 
 # 6. Zapisanie wyników
 
-## Zapisanie tabeli RFM do pliku CSV
-rfm_table.to_csv('rfm_table.csv', index=True, decimal=',')
+output_dir = data_dir / "RFM-Data"   
+output_dir.mkdir(exist_ok=True)
 
-## Losowe 500 wierszy dla przykładu
+rfm_table.to_csv(output_dir / "rfm_table.csv", index=True)
+
+# 7. Sample danych
+
 sample_df = df.sample(500, random_state=42)
+sample_df.to_csv(data_dir / "sample" / "clean_sample.csv", index=False)
 
-## Zapisanie w folderze sample
-sample_df.to_csv("data/sample/clean_sample.csv", index=False)
+raw_df = pd.read_csv(
+    data_dir / "Raw-Data" / "online_retail_II.csv",
+    parse_dates=['invoice_date'],
+    sep=';'
+)
 
-## Wczytanie surowych danych
-raw_df = pd.read_csv('D:/projects/Retail-Analytics/data/Raw-Data/online_retail_II.csv', parse_dates=['invoice_date'], sep=";")
-
-## Losowe 500 wierszy dla przykładu
 raw_sample_df = raw_df.sample(500, random_state=42)
-
-## Zapisanie w folderze sample
-raw_sample_df.to_csv("data/sample/raw_sample.csv", index=False, sep=",")
+raw_sample_df.to_csv(data_dir / "sample" / "raw_sample.csv", index=False)
