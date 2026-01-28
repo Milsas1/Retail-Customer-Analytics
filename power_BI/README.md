@@ -4,13 +4,6 @@ Folder `power_BI/` zawiera interaktywny dashboard Power BI wspierający analizę
 
 ---
 
-## Podgląd dashboardu
-Zrzut ekranu umożliwia zapoznanie się z dashboardem bez konieczności uruchamiania pliku `.pbix`.
-
-![Dashboard – przegląd ogólny](screenshots/dashboard_overview.png)
-
----
-
 ## Cel dashboardu
 
 Dashboard został zaprojektowany w celu:
@@ -65,5 +58,6 @@ Dashboard składa się z jednej strony, logicznie podzielonej na obszary anality
 - Dashboard nie został opublikowany online ze względu na ograniczenia konta edukacyjnego Power BI.
 - Do uruchomienia wymagany jest Power BI Desktop.
 - Plik źródłowy: `RFM-vizualizacja.pbix`.
+
 
 
