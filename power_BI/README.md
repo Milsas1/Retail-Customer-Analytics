@@ -5,6 +5,7 @@ Folder `power_BI/` zawiera interaktywny dashboard Power BI wspierający analizę
 ---
 
 ## Podgląd dashboardu
+Zrzut ekranu umożliwia zapoznanie się z dashboardem bez konieczności uruchamiania pliku `.pbix`.
 
 ![Dashboard – przegląd ogólny](screenshots/dashboard_overview.png)
 
@@ -24,19 +25,19 @@ Dashboard został zaprojektowany w celu:
 
 Dashboard prezentuje m.in.:
 
-- liczba klientów (łącznie i wg segmentów),
-- udział segmentów w całkowitych przychodach,
-- średnia wartość koszyka (Average Order Value),
-- Recency, Frequency, Monetary na poziomie segmentów,
-- koncentracja przychodów (Pareto).
+- liczbę klientów,
+- całkowity przychód,
+- średnią wartość zamówienia (AOV),
+- mediany Recency, Frequency oraz Monetary.
 
-Wszystkie metryki oparte są na miarach DAX oraz finalnej tabeli RFM.
+Wszystkie metryki oparte są na miarach DAX oraz finalnej tabeli RFM.  
+Metryki dobrano w celu oceny wartości klientów, ich aktywności zakupowej oraz potencjału retencyjnego.
 
 ---
 
 ## Struktura dashboardu
 
-Dashboard składa się z logicznych sekcji umożliwiających analizę od ogółu do szczegółu:
+Dashboard składa się z jednej strony, logicznie podzielonej na obszary analityczne (sekcje wizualne):
 
 1. **Overview**
    - struktura klientów i przychodów,
@@ -48,27 +49,14 @@ Dashboard składa się z logicznych sekcji umożliwiających analizę od ogółu
    - średni koszyk i udział w sprzedaży,
    - identyfikacja segmentów wysokiej i niskiej wartości.
 
-3. **Customer Risk & Potential**
-   - segmenty At Risk i Nearly Lost,
-   - segmenty o wysokim potencjale wzrostu,
-   - wsparcie decyzji reaktywacyjnych i retencyjnych.
-
 ---
 
 ## Logika analityczna
 
 - Segmentacja oparta na analizie **RFM (Recency, Frequency, Monetary)**.
 - Klienci zostali przypisani do segmentów biznesowych na podstawie kwantyli.
-- Model danych oparty na tabeli faktów (transakcje) oraz tabeli klientów (RFM).
+- Model danych oparty jest na jednej tabeli RFM przygotowanej na poziomie klienta.
 - Zastosowano miary DAX do obliczeń dynamicznych i filtrów kontekstowych.
-
----
-
-## Zrzut ekranu
-
-W folderze `screenshots/` znajduje się zrzut ekranu prezentujący widok ogólny dashboardu.
-
-(Zrzut umożliwia zapoznanie się z dashboardem bez uruchamiania pliku `.pbix`).
 
 ---
 
@@ -77,4 +65,5 @@ W folderze `screenshots/` znajduje się zrzut ekranu prezentujący widok ogólny
 - Dashboard nie został opublikowany online ze względu na ograniczenia konta edukacyjnego Power BI.
 - Do uruchomienia wymagany jest Power BI Desktop.
 - Plik źródłowy: `RFM-vizualizacja.pbix`.
+
 
