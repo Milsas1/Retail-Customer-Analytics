@@ -74,6 +74,10 @@ Na etapie przygotowania danych:
 
 ## :chart_with_upwards_trend: Dashboard
 
+Dashboard prezentuje interaktywną analizę segmentów klientów oraz ich wartości biznesowej.
+
+![Przegląd dashboardu](power_BI/screenshots/dashboard_overview.png)
+
 Dashboard został zaprojektowany jako narzędzie wspierające szybkie decyzje biznesowe poprzez wizualne porównanie segmentów i ich wpływu na przychody. Umożliwia:
 
 * identyfikację segmentów oraz monitorowanie ich wpływu na przychody,
@@ -82,7 +86,7 @@ Dashboard został zaprojektowany jako narzędzie wspierające szybkie decyzje bi
 * szybkie przejście od ogólnego obrazu do szczegółów.
 
 **Dashboard w Power BI nie został opublikowany online ze względu na ograniczenia konta edukacyjnego.
-W folderze power_BI/ znajduje się plik .pbix oraz README ze zrzutami ekranu i opisem kluczowych metryk.**
+W folderze power_BI/ znajduje się plik `.pbix`, folder `screenshots/` oraz `README.md` z opisem kluczowych metryk.**
 
 ---
 
