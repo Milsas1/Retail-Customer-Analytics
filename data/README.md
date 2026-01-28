@@ -17,7 +17,7 @@ Zbiór zawiera dane transakcyjne brytyjskiego sklepu internetowego z lat **2010�
 
 ## Zakres i charakter danych
 
-Dane obejmują m.in.:
+Dane wejściowe obejmują m.in. następujące kolumny:
 - identyfikator klienta,
 - datę transakcji,
 - identyfikator produktu,
@@ -36,7 +36,7 @@ Na etapie przygotowania danych:
 - usunięto transakcje zwrotów oraz ręczne korekty,
 - odfiltrowano rekordy bez `CustomerID`,
 - usunięto wartości zerowe i ujemne (ilości i ceny),
-- obliczono wartość transakcji (`revenue = quantity × unit_price`).
+- obliczono wartość transakcji (przychód) na podstawie ilości i ceny jednostkowej.
 
 Celem czyszczenia danych było uzyskanie wiarygodnej bazy do analizy zachowań klientów i segmentacji RFM.
 
@@ -46,11 +46,13 @@ Celem czyszczenia danych było uzyskanie wiarygodnej bazy do analizy zachowań k
 
 - `rfm_table.csv`  
   Finalna tabela segmentacji RFM na poziomie klienta, wykorzystywana w Power BI.  
-  Zawiera metryki Customer ID, Recency, Frequency, Monetary, RFM Score oraz przypisany segment biznesowy.
+  Zawiera identyfikator klienta, metryki RFM (Recency, Frequency, Monetary), osobne oceny R, F i M, łączny RFM Score oraz przypisany segment biznesowy.
+
 
 - `sample/`  
   Dane zostały wybrane **losowo** z pełnego zbioru danych i mają charakter wyłącznie poglądowy.  
-  Ich celem jest umożliwienie szybkiego zapoznania się ze strukturą danych oraz procesem przygotowania danych bez konieczności pracy na pełnym zbiorze.  
+  Ich celem jest umożliwienie szybkiego zapoznania się ze strukturą danych oraz procesem przygotowania danych bez konieczności pracy na pełnym zbiorze.
+  Nie są wykorzystywane w finalnej analizie ani w dashboardzie Power BI. 
 
 - `readme.md`  
   Opis danych oraz procesu ich przygotowania.
@@ -62,4 +64,5 @@ Celem czyszczenia danych było uzyskanie wiarygodnej bazy do analizy zachowań k
 - Dane obejmują wyłącznie rynek **UK**.
 - Analiza opiera się na danych historycznych (2010–2011).
 - Brak danych demograficznych klientów – segmentacja oparta wyłącznie na zachowaniu zakupowym.
+
 
